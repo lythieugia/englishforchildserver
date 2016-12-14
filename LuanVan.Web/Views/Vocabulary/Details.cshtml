@@ -1,0 +1,29 @@
+﻿@model LuanVan.Web.Models.Domain.Vocabulary
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Vocabulary</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Word)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Word)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ImageUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ImageUrl)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to Group List", "Index")
+</p>

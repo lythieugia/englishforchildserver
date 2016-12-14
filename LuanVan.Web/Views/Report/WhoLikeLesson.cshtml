@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Who Likes Lesson Report";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>                
+            </hgroup>
+            <p>
+                <span style="background-color: #D70206; color: #fff; padding: 2px; border-radius: 5px; padding-right: 35px; margin-right: 10px;"></span>Students don't like this lesson
+            </p>
+            <p>
+                <span style="background-color: #F05B4F; color: #fff; padding: 2px; border-radius: 5px; padding-right: 35px; margin-right: 10px;"></span>Students have no idea
+            </p>
+            <p>
+                <span style="background-color: #F4C63D; color: #fff; padding: 2px; border-radius: 5px; padding-right: 35px; margin-right: 10px;"></span>Students like this lesson
+            </p>
+        </div>
+    </section>
+}
+
+<section id="lesson-like-report"></section>
+
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Report/report.wholikelesson.js"></script>
+}

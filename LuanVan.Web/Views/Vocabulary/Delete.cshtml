@@ -1,0 +1,27 @@
+﻿@model LuanVan.Web.Models.ViewModel.DeleteVocabularyViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Vocabulary</legend>
+
+    <div class="display-label">
+        Word: @Html.DisplayFor(model => model.Word)
+    </div>
+
+    <div>
+         <img src="@Model.ImageUrl" style="max-width: 100px;"/>
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to Vocabulary List", "Details", "Group", new { Id = Model.GroupId }, null)
+    </p>
+}

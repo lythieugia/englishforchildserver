@@ -1,0 +1,32 @@
+﻿@model LuanVan.Web.Models.ViewModel.AddLessonViewModel
+
+@{
+    ViewBag.Title = "AddLesson";
+}
+
+<h2>AddLesson</h2>
+
+<div class="display-label">Student Name: @Model.StudentName</div>
+
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Lesson Name</th>
+        <th></th>
+    </tr>
+
+@{int rowNo=0;}
+@foreach (var item in Model.Lessons) {
+    <tr>
+        <td>@(rowNo+=1)</td>
+        <td>@item.Name</td>
+        <td>
+            @Html.ActionLink("Add", "AddStudentToLesson", "Student", new { lessonId = item.Id, studentId = Model.StudentId }, null)
+        </td>
+    </tr>
+}
+</table>
+
+<p>
+    @Html.ActionLink("Back to Student Detail", "Details", "Student", new { id = Model.StudentId }, null)
+</p>

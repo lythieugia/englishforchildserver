@@ -1,0 +1,74 @@
+﻿@model LuanVan.Web.Models.ViewModel.DetailClassViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Class</legend>
+
+    <div class="display-label">
+         Class Name: @Model.Name
+    </div>
+
+    @if(!Model.CanEdit){
+        <div style="color: red;">This class is not editable because it has already started.</div>
+    }
+
+    <br />
+
+    <div class="display-label" style="font-weight: bold;">Students in class:</div>
+        <table>
+        @{ int orderNumberStudentInClass = 1; }
+        @foreach (var stu in Model.StudentsInClass)
+        {
+            <tr>
+                <td>@orderNumberStudentInClass</td>
+                <td>
+                    @Html.DisplayFor(modelItem => stu.Name)
+                </td>
+                @if (@Model.CanEdit)
+                {
+                    <td>
+                        @Html.ActionLink("Remove", "RemoveStudent", new { classId = Model.Id, studentId = stu.Id  })
+                    </td>
+                }                
+            </tr>
+        
+            orderNumberStudentInClass += 1;
+        }
+        </table>
+
+        @if (@Model.CanEdit)
+        {        
+            <br />
+            <div class="display-label" style="font-weight: bold;">Students not in any class:</div>
+            <table>
+            @{ int orderNumberStudentNotInClass = 1; }
+            @foreach (var stu in Model.StudentsNotInAnyClass)
+            {
+                <tr>
+                    <td>@orderNumberStudentNotInClass</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => stu.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Add", "AddStudent", new { classId = Model.Id, studentId = stu.Id  })
+                    </td>
+                </tr>
+        
+                orderNumberStudentNotInClass += 1;
+            }
+            </table>
+        }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Page/class.js"></script>
+}

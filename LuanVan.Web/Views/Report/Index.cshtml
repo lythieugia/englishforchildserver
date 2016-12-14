@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<ol class="round">
+    <li class="one">
+        <h5><a href="/report/lesson">Lesson Report</a></h5>
+        To see all lesson reports
+    </li>
+
+    <li class="two">
+        <h5><a href="/report/student">Student Report</a></h5>
+        To see all student processes
+    </li>
+
+    <li class="three">
+        <h5><a href="/report/wholikelesson">Who likes the lessons</a></h5>
+        To see who likes the lessons
+    </li>
+</ol>

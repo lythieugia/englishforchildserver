@@ -1,0 +1,59 @@
+﻿@model LuanVan.Web.Models.ViewModel.DetailStudentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Student Detail</h2>
+
+<div class="display-label">Student Name: @Model.Name</div>
+<div class="display-label">Parent Name: @Model.ParentName</div>
+
+<br />
+<div class="display-label" style="font-weight: bold;">List parent's accounts</div>
+
+<table>
+@{ int orderParent = 1; }
+@foreach (var p in Model.Parents)
+{
+    <tr>
+        <td>@orderParent</td>
+        <td>
+            @Html.DisplayFor(modelItem => p.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Change", "ChangeParent", new { studentId = Model.Id, parentId = p.UserId  })
+        </td>          
+    </tr>
+        
+    orderParent += 1;
+}
+</table>
+
+@*<p>
+    @Html.ActionLink("Add Lesson", "AddLesson", "Student", new { studentId = Model.Id }, null)
+</p>
+
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Lesson Name</th>
+        <th></th>
+    </tr>
+
+@{int rowNo=0;}
+@foreach (var item in Model.Lessons) {
+    <tr>
+        <td>@(rowNo+=1)</td>
+        <td>@item.Name</td>
+        <td>
+            @Html.ActionLink("Remove", "RemoveStudentFromLesson", new { lessonId = item.Id, studentId = Model.Id }, null)
+        </td>
+    </tr>
+}
+</table>*@
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to Student List", "Index")
+</p>

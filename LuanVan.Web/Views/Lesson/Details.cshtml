@@ -1,0 +1,80 @@
+﻿@model LuanVan.Web.Models.ViewModel.DetailLessonViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Lesson Detail</h2>
+
+<div class="display-label">Lesson Name: @Model.Name</div>
+
+<div class="display-label">Image: <a href="@Model.ImageUrl" target="_blank"><img src="@Model.ImageUrl" style="max-width: 100px;"/></a></div>
+
+<p>
+    @Html.ActionLink("Create New Group", "Create", "Group", new { lessonId = Model.Id }, null)
+</p>
+
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th></th>
+    </tr>
+
+@{int rowNo=0;}
+@foreach (var item in Model.Groups) {
+    <tr>
+        <td>@(rowNo+=1)</td>
+        <td>@item.Name</td>
+        <td><a href="@item.ImageUrl" target="_blank"><img src="@item.ImageUrl" style="max-width: 100px;"/></a></td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Group", new { id=item.Id }, null) |
+            @Html.ActionLink("Details", "Details", "Group", new { id=item.Id }, null)
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+</table>
+
+<div class="display-label" style="font-weight: bold;">classes are learning this lesson:</div>
+<table>
+@{ int orderClassLearningThisLesson = 1; }
+@foreach (var cls in Model.ClassLearningThisLesson)
+{
+    <tr>
+        <td>@orderClassLearningThisLesson</td>
+        <td>
+            @Html.DisplayFor(modelItem => cls.Name)
+        </td>             
+    </tr>
+        
+    orderClassLearningThisLesson += 1;
+}
+</table>
+
+<br />
+<div class="display-label" style="font-weight: bold;">classes are not learning this lesson:</div>
+<div style="color: red;">Can not undo after adding class to lesson</div>
+<table>
+@{ int orderClassNotLearningThisLesson = 1; }
+@foreach (var cls in Model.ClassNotLearningThisLesson)
+{
+    <tr>
+        <td>@orderClassNotLearningThisLesson</td>
+        <td>
+            @Html.DisplayFor(modelItem => cls.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Add", "AddClass", new { lessonId = Model.Id, classId = cls.Id  })
+        </td>
+    </tr>
+        
+    orderClassNotLearningThisLesson += 1;
+}
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to Lesson List", "Index")
+</p>

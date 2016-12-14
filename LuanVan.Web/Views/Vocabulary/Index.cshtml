@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LuanVan.Web.Models.Domain.Vocabulary>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Vocabulary</th>
+        <th>Image</th>
+        <th>QR Code<th>
+        @*<th>Action</th>*@
+    </tr>
+
+@{int rowNo=0;}
+@foreach (var item in Model) {
+    <tr>
+        <td>@(rowNo+=1)</td>
+        <td>@item.Word</td>
+        <td><a href="@item.ImageUrl" target="_blank"><img src="@item.ImageUrl" style="max-width: 100px;"/></a></td>
+        <td><a href="/Vocabulary/GenerateQRCode?vocabularyId=@item.Id&imageUrl=@item.ImageUrl" target="_blank"><img src="@Url.Action("GenerateQRCode", new { vocabularyId = item.Id , imageUrl = item.ImageUrl })" style="width: 100px; height: 100px;" /></a></td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+</table>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+    }
+</style>
